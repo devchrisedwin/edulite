@@ -25,14 +25,18 @@ function CourseDetails() {
       <div className='flex flex-col md:flex-row justify-between mt-[40px] gap-8'>
         {/* Course Image */}
         <div className='w-full md:w-[52%]'>
-          <img className='w-full h-auto md:h-[400px] object-cover' src={course3} alt='Course' />
+          <img
+            className='w-full h-auto md:h-[400px] object-cover rounded-lg'
+            src={course3}
+            alt='Course'
+          />
           <p className='text-center font-bold pt-3'>Solving Quadratic Equations</p>
         </div>
 
         {/* Course Description */}
         <div className='w-full md:w-[47%]'>
           <h3 className='font-bold mb-3'>Course Description</h3>
-          <p className='w-full md:w-[320px] text-[13px] text-gray-500'>
+          <p className='w-full text-[13px] text-gray-500'>
             This course covers algebraic concepts from basic expressions to quadratic expressions. It's
             designed for WAEC and JAMB candidates, with real past questions and step-by-step video
             tutorials.
@@ -56,9 +60,13 @@ function CourseDetails() {
       {/* Category Tabs */}
       <div className='flex gap-3 mt-5 cursor-pointer overflow-x-auto'>
         {categories.map((category) => (
-          <div key={category} onClick={() => setCourseDetailCat(category)}>
+          <div
+            key={category}
+            onClick={() => setCourseDetailCat(category)}
+            className='flex-shrink-0'
+          >
             <p
-              className={`p-1 font-semibold text-[13px] whitespace-nowrap ${
+              className={`p-1 font-semibold text-[13px] w-fit ${
                 courseDetailCat === category
                   ? 'text-[#0A751D] border-b-4 border-b-[#0A751D]'
                   : 'text-gray-400'
@@ -71,8 +79,10 @@ function CourseDetails() {
       </div>
 
       {/* Conditional Rendering of Components */}
-      {courseDetailCat === 'Comments' && <Comments />}
-      {courseDetailCat === 'Take Assessment' && <Assessment />}
+      <div className='mt-5'>
+        {courseDetailCat === 'Comments' && <Comments />}
+        {courseDetailCat === 'Take Assessment' && <Assessment />}
+      </div>
 
       {/* Footer Section */}
       <div
