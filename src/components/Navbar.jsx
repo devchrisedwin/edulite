@@ -22,7 +22,7 @@ function Navbar() {
   };
 
   return (
-    <div className='w-full md:w-[90%] m-auto px-4'>
+    <div className='w-full md:w-[90%] m-auto px-4 pt-2.5'>
       <div className='h-[60px] md:h-[40px] flex items-center justify-between'>
         {/* Logo */}
         <div className='font-bold text-lg md:text-xl'>Edu Lite</div>
@@ -38,7 +38,7 @@ function Navbar() {
         <div
           className={`${
             isMenuOpen ? 'block' : 'hidden'
-          } md:block absolute md:static top-[60px] left-0 w-full md:w-auto bg-white md:bg-transparent z-10`}
+          } md:block absolute md:static top-[60px] left-0 w-full md:w-auto bg-white md:bg-transparent z-10 shadow-md md:shadow-none`}
         >
           <ul className='flex flex-col md:flex-row items-center justify-between font-semibold'>
             {!isLoggedIn ? (
@@ -69,12 +69,12 @@ function Navbar() {
               </>
             ) : (
               <>
-                <div className='flex items-center space-x-4'>
+                <div className='flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 p-4 md:p-0'>
                   {/* Search Bar */}
                   <input
                     type='text'
                     placeholder='Search...'
-                    className='border border-gray-300 rounded p-1'
+                    className='w-full md:w-auto border border-gray-300 rounded p-2 focus:outline-none focus:border-[#0A751D]'
                   />
 
                   {/* Profile Section */}
@@ -105,7 +105,7 @@ function Navbar() {
 
                     {/* Dropdown Menu */}
                     {isDropdownOpen && (
-                      <div className='absolute right-0 mt-36 w-48 bg-white border border-gray-200 rounded shadow-lg'>
+                      <div className='absolute right-0 mt-36 w-48 bg-white border border-gray-200 rounded shadow-lg z-20'>
                         <NavLink
                           to='/dashboard/dashboardhome'
                           className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
