@@ -8,6 +8,8 @@ import CourseDetails from "./pages/CourseDetails"
 import Footer from "./components/Footer"
 import Auth from "./pages/Auth"
 import { AuthFormDataProvider } from "./context/AuthFormDataContext"
+import MainLogin from "./components/MainLogin"
+import Dashboard from "./pages/Dashboard"
 
 // import 'antd/dist/reset.css'; // For Ant Design v5
 
@@ -24,6 +26,8 @@ function App() {
           <Route path="/courses" element={<Courses/>}/>
           <Route path="/courses/:id" element={<CourseDetails/>}/>
           <Route path="/auth" element={<Auth/>}/>
+          <Route path="/login" element={<MainLogin/>}/>
+          <Route path="/dashboard" element={<Dashboard/>}/>
         </Routes>
       </div>
       <Footer/>

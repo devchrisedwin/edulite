@@ -35,25 +35,28 @@ function Auth() {
         return null;
     }
   };
-  return (
-    <div className='border flex items-center w-[60%] h-[500px] m-auto mt-10 overflow-hidden'>
-        <div className='w-[50%] p-2 overflow-hidden'>
-            <div className='text-[#0A751D] w-[100%] h-[50px] 
-            m-auto ml- text-[12px] font-semibold mb-2 mt-16'>
-                <h3 className='text-xl font-bold'>Edu Lite</h3>
-                <Progress
-                    percent={((currentStep + 1) / steps.length) * 100}
-                    strokeColor="#0A751D"
-                    showInfo={false}
-                />
-            </div>
 
-            {renderChildComponent()}
+  return (
+    <div className='border flex flex-col md:flex-row items-center w-full md:w-[90%] lg:w-[60%] h-auto md:h-[500px] m-auto mt-10 overflow-hidden'>
+      {/* Left Section (Form and Progress Bar) */}
+      <div className='w-full md:w-[50%] p-2 overflow-hidden'>
+        <div className='text-[#0A751D] w-full h-[50px] m-auto text-[12px] font-semibold mb-2 mt-4 md:mt-16'>
+          <h3 className='text-xl font-bold'>Edu Lite</h3>
+          <Progress
+            percent={((currentStep + 1) / steps.length) * 100}
+            strokeColor="#0A751D"
+            showInfo={false}
+          />
         </div>
 
-        <div className='w-[50%] h-[500px] signup-right'></div>
+        {/* Render the current step's component */}
+        {renderChildComponent()}
+      </div>
+
+      {/* Right Section (Image/Background) */}
+      <div className='w-full md:w-[50%] h-[300px] md:h-[500px] signup-right bg-cover bg-center'></div>
     </div>
-  )
+  );
 }
 
-export default Auth
+export default Auth;

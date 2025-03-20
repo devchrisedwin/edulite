@@ -7,7 +7,7 @@ const { Option } = Select;
 
 const Signup = ({ onNext }) => {
   const [form] = Form.useForm();
-  const { formData, setFormData } = useContext(AuthFormDataContext)
+  const { formData, setFormData } = useContext(AuthFormDataContext);
 
   const onFinish = (values) => {
     setFormData((prevData) => ({ ...prevData, ...values }));
@@ -15,11 +15,12 @@ const Signup = ({ onNext }) => {
   };
 
   return (
-    <div className='w-[98%] h-[500px] m-auto font-semibold overflow-y-auto p-1'>
+    <div className='w-full md:w-[98%] h-auto md:h-[500px] m-auto font-semibold overflow-y-auto p-1 max-w-[500px]'>
       <h3 className='text-black text-[13px]'>Sign up</h3>
       <h3 className='text-gray-400 mb-2 text-[12px]'>Join us and start learning</h3>
 
       <Form form={form} onFinish={onFinish} layout="vertical">
+        {/* First Name Field */}
         <Form.Item
           name="firstName"
           label="First Name"
@@ -28,14 +29,18 @@ const Signup = ({ onNext }) => {
         >
           <Input />
         </Form.Item>
+
+        {/* Last Name Field */}
         <Form.Item
           name="lastName"
           label="Last Name"
           rules={[{ required: true, message: 'Please input your last name!' }]}
-          style={{ marginBottom: '5px',marginTop: '-5px' }}
+          style={{ marginBottom: '5px', marginTop: '-5px' }}
         >
           <Input />
         </Form.Item>
+
+        {/* Grade Field */}
         <Form.Item
           name="grade"
           label="Grade"
@@ -49,6 +54,8 @@ const Signup = ({ onNext }) => {
             <Option value="12">Grade 12</Option>
           </Select>
         </Form.Item>
+
+        {/* Email Field */}
         <Form.Item
           name="email"
           label="Email"
@@ -57,7 +64,7 @@ const Signup = ({ onNext }) => {
           <Input type="email" />
         </Form.Item>
 
-        {/* Checkbox for Terms and Conditions */}
+        {/* Terms and Conditions Checkbox */}
         <div className='flex items-center mt-[-30px] text-[9px] p-2'>
           <Form.Item
             name="agreeToTerms"
