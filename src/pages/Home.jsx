@@ -125,10 +125,16 @@ function Home() {
 
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full md:w-[80%] m-auto mt-[10px]'>
           {[course1, course2, course3, course4, course5, course6].map((course, index) => (
-            <div key={index} className='w-full h-[220px] border border-gray-400 rounded'>
-              <img className='w-[90%] m-auto mt-[10px]' src={course} alt={`Course ${index + 1}`} />
-              <p className='ml-2 mt-1 text-[13px] font-bold'>Mathematics</p>
-              <p className='ml-2 mt-1 text-[13px] opacity-[0.6]'>Statistic</p>
+            <div key={index} className='w-full border border-gray-400 rounded flex flex-col'>
+              <img
+                className='w-[90%] h-[120px] m-auto mt-[10px] object-cover'
+                src={course}
+                alt={`Course ${index + 1}`}
+              />
+              <div className='p-2 flex-1 flex flex-col justify-between'>
+                <p className='text-[13px] font-bold'>Mathematics</p>
+                <p className='text-[13px] opacity-[0.6]'>Statistic</p>
+              </div>
             </div>
           ))}
         </div>

@@ -69,7 +69,7 @@ function Navbar() {
               </>
             ) : (
               <>
-                <div className='flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 p-4 md:p-0'>
+                <div className='flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 p-4 md:p-0 ml-3 lg:ml-0'>
                   {/* Search Bar */}
                   <input
                     type='text'
