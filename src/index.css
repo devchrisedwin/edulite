@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+
+.active-link{
+    color: green;
+}
+
+.signup-right{
+    background-image: url("../src/assets/images/signupimage.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
