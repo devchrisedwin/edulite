@@ -9,7 +9,7 @@ import Footer from "./components/Footer"
 import Auth from "./pages/Auth"
 import { AuthFormDataProvider } from "./context/AuthFormDataContext"
 
-import 'antd/dist/reset.css'; // For Ant Design v5
+// import 'antd/dist/reset.css'; // For Ant Design v5
 
 
 
