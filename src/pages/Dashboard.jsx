@@ -46,7 +46,7 @@ function Dashboard() {
             <h1 className='text-2xl font-bold mb-8 text-gray-800'>EduLite</h1>
 
             {/* Sidebar Items */}
-            <div className='space-y-4 sm:mt-15'>
+            <div className='space-y-4 mt-20 lg:mt-0'>
               {sidebarItems.map((item) => (
                 <Link to={item.path} key={item.id} style={{ textDecoration: 'none' }}>
                   <div

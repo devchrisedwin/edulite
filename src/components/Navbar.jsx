@@ -105,7 +105,23 @@ function Navbar() {
 
                     {/* Dropdown Menu */}
                     {isDropdownOpen && (
-                      <div className='absolute right-0 mt-36 w-48 bg-white border border-gray-200 rounded shadow-lg z-20'>
+                      <div className='absolute right-0 mt-56 w-48 bg-white border border-gray-200 rounded shadow-lg z-20'>
+                        
+                        <NavLink
+                          to='/'
+                          className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                          onClick={() => setIsDropdownOpen(false)}
+                        >
+                          Home
+                        </NavLink>
+                        <NavLink
+                          to='/courses'
+                          className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                          onClick={() => setIsDropdownOpen(false)}
+                        >
+                          Courses
+                        </NavLink>
+
                         <NavLink
                           to='/dashboard/dashboardhome'
                           className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
