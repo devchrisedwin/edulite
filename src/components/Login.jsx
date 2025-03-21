@@ -23,18 +23,38 @@ const Login = ({ onNext, onPrevious }) => {
         <Form.Item
           name="password"
           label="Password"
-          rules={[{ required: true, message: 'Must be at least 8 characters' }]}
+          rules={[
+            { required: true, message: 'Password is required' },
+            { min: 8, message: 'Password must be at least 8 characters' },
+          ]}
         >
-          <Input.Password />
+          <Input.Password
+            autoComplete="new-password" // Add autocomplete attribute
+            placeholder="Enter your password"
+          />
         </Form.Item>
 
         {/* Confirm Password Field */}
         <Form.Item
           name="confirmpassword"
           label="Confirm Password"
-          rules={[{ required: true, message: 'Must be at least 8 characters' }]}
+          dependencies={['password']} // Ensure this field depends on the password field
+          rules={[
+            { required: true, message: 'Please confirm your password' },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error('Passwords do not match'));
+              },
+            }),
+          ]}
         >
-          <Input.Password />
+          <Input.Password
+            autoComplete="new-password" // Add autocomplete attribute
+            placeholder="Confirm your password"
+          />
         </Form.Item>
 
         {/* Continue Button */}

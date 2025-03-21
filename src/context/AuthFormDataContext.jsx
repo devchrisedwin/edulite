@@ -8,7 +8,7 @@ export const AuthFormDataProvider = ({ children }) => {
     lastName: '',
     grade: '',
     email: '',
-    otp: '',
+    role: '',
     password: '',
     preferences: [],
     profilePicture: null,

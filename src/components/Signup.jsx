@@ -15,7 +15,7 @@ const Signup = ({ onNext }) => {
   };
 
   return (
-    <div className='w-full md:w-[98%] h-auto md:h-[500px] m-auto font-semibold overflow-y-auto p-1 max-w-[500px]'>
+    <div className='w-full md:w-[98%] h-auto md:h-[550px] m-auto font-semibold p-1 max-w-[500px]'>
       <h3 className='text-black text-[13px]'>Sign up</h3>
       <h3 className='text-gray-400 mb-2 text-[12px]'>Join us and start learning</h3>
 
@@ -55,6 +55,19 @@ const Signup = ({ onNext }) => {
           </Select>
         </Form.Item>
 
+        {/* Role Field */}
+        <Form.Item
+          name="role"
+          label="Role"
+          rules={[{ required: true, message: 'Please select your role!' }]}
+          style={{ marginBottom: '5px', marginTop: '-5px' }}
+        >
+          <Select placeholder="Select your role">
+            <Option value="student">Student</Option>
+            <Option value="teacher">Teacher</Option>
+          </Select>
+        </Form.Item>
+
         {/* Email Field */}
         <Form.Item
           name="email"
@@ -88,14 +101,14 @@ const Signup = ({ onNext }) => {
           </p>
         </div>
 
-        {/* Signup Button */}
+        {/* Continue Button */}
         <Form.Item>
           <Button
             type="primary"
             htmlType="submit"
             style={{ width: '100%', marginTop: '-5px', backgroundColor: '#0A751D' }}
           >
-            Signup
+            Continue
           </Button>
         </Form.Item>
 

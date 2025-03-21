@@ -90,11 +90,13 @@ function Courses() {
         <h3 className='font-semibold text-[#050505] text-center md:text-left mb-2 md:mb-0'>
           Start Learning Today - It's Free
         </h3>
-        <button
-          className='bg-[#0A751D] outline-none border-none w-full md:w-[130px] text-white font-semibold p-2 rounded text-[13px]'
-        >
-          Sign Up for Free
-        </button>
+        <Link to='/auth'>
+          <button
+            className='bg-[#0A751D] outline-none border-none w-full md:w-[130px] text-white font-semibold p-2 rounded text-[13px]'
+          >
+            Sign Up for Free
+          </button>
+        </Link>
       </div>
     </div>
   );

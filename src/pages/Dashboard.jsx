@@ -25,7 +25,7 @@ function Dashboard() {
   };
 
   return (
-    <div className='flex min-h-screen'>
+    <div className='flex min-h-screen lg:mt-10 mt-15'>
       {/* Sidebar Toggle Button (Mobile) */}
       <button
         onClick={toggleSidebar}

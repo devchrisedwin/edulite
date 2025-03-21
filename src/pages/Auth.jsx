@@ -37,7 +37,7 @@ function Auth() {
   };
 
   return (
-    <div className='border flex flex-col md:flex-row items-center w-full md:w-[90%] lg:w-[60%] h-auto md:h-[500px] m-auto mt-10 overflow-hidden'>
+    <div className='flex flex-col md:flex-row items-center w-full md:w-[90%] lg:w-[60%] h-auto md:h-[600px] m-auto mt-20 overflow-hidden shadow-lg rounded-lg'>
       {/* Left Section (Form and Progress Bar) */}
       <div className='w-full md:w-[50%] p-2 overflow-hidden'>
         <div className='text-[#0A751D] w-full h-[50px] m-auto text-[12px] font-semibold mb-2 mt-4 md:mt-16'>
@@ -54,7 +54,7 @@ function Auth() {
       </div>
 
       {/* Right Section (Image/Background) */}
-      <div className='w-full md:w-[50%] h-[300px] md:h-[500px] signup-right bg-cover bg-center'></div>
+      <div className='w-full md:w-[50%] h-[300px] md:h-[600px] signup-right bg-cover bg-center'></div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import heroImg1 from '../assets/images/hero-img1.png';
 import heroImg2 from '../assets/images/hero-img2.png';
 import course1 from '../assets/images/course1.png';
@@ -139,11 +140,13 @@ function Home() {
           ))}
         </div>
 
-        <div className='w-full md:w-[200px] m-auto mt-[30px]'>
-          <button className='bg-[#0A751D] text-white text-[13px] p-2 w-full md:w-[150px] font-bold rounded'>
-            Browse All Courses
-          </button>
-        </div>
+        <Link to='/courses'>
+          <div className='w-full md:w-[200px] m-auto mt-[30px]'>
+            <button className='bg-[#0A751D] text-white text-[13px] p-2 w-full md:w-[150px] font-bold rounded'>
+              Browse All Courses
+            </button>
+          </div>
+        </Link>
       </div>
 
       {/* FAQ Section */}
@@ -185,9 +188,11 @@ function Home() {
         <h3 className='font-semibold text-[#050505] text-center md:text-left mb-2 md:mb-0'>
           Start Learning Today - It's Free
         </h3>
-        <button className='bg-[#0A751D] outline-none border-none w-full md:w-[130px] text-white font-semibold p-2 rounded text-[13px]'>
-          Sign Up for Free
-        </button>
+        <Link to='/auth'>
+          <button className='bg-[#0A751D] outline-none border-none w-full md:w-[130px] text-white font-semibold p-2 rounded text-[13px]'>
+            Sign Up for Free
+          </button>
+        </Link>
       </div>
     </>
   );
