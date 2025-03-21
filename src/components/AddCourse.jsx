@@ -36,7 +36,7 @@ const AddCourse = () => {
 
   return (
     <div className='p-4'>
-      <h1 className='text-2xl font-bold mb-6'>Add New Course</h1>
+      <h1 className='text-2xl font-bold mb-6 mt-10 lg:mt-0'>Add New Course</h1>
 
       {/* Custom Video Upload Section */}
       <div className='flex justify-center mb-8'>
