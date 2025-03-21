@@ -9,7 +9,7 @@ function Dashboard() {
 
   const sidebarItems = [
     { id: 'Home', icon: <MdDashboard size={24} />, path: 'dashboardhome' },
-    { id: 'Courses', icon: <FaBookOpen size={24} />, path: 'dasboardcourse' },
+    { id: 'Courses', icon: <FaBookOpen size={24} />, path: 'dashboardcourse' },
     { id: 'Assessment', icon: <MdAssignment size={24} />, path: 'dashboardassessment' },
     { id: 'Resources', icon: <MdLibraryBooks size={24} />, path: 'dashboardresource' },
     { id: 'Profile', icon: <MdPerson size={24} />, path: 'dashboardprofile' },

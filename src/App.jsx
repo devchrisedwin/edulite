@@ -15,6 +15,9 @@ import DashboardCourses from "./components/DashboardCourses"
 import DashboardAssessment from "./components/DashboardAssessment"
 import DashboardResource from "./components/DashboardResource"
 import DashboardProfile from "./components/DashboardProfile"
+import ResourceDetail from "./components/ResourceDetail"
+import AddCourse from "./components/AddCourse"
+import CoursePreview from "./components/CoursePreview"
 
 // import 'antd/dist/reset.css'; // For Ant Design v5
 
@@ -34,9 +37,12 @@ function App() {
           <Route path="/login" element={<MainLogin/>}/>
           <Route path="/dashboard" element={<Dashboard/>}>
             <Route path="dashboardhome" element={<DashbordHome/>}/>
-            <Route path="dasboardcourse" element={<DashboardCourses/>}/>
+            <Route path="dashboardcourse" element={<DashboardCourses/>}/>
+            <Route path="addcourse" element={<AddCourse/>}/>
+            <Route path="preview" element={<CoursePreview/>}/>
             <Route path="dashboardassessment" element={<DashboardAssessment/>}/>
             <Route path="dashboardresource" element={<DashboardResource/>}/>
+            <Route path="dashboardresource/:id" element={<ResourceDetail/>}/>
             <Route path="dashboardprofile" element={<DashboardProfile/>}/>
           </Route>
         </Routes>

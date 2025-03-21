@@ -5,6 +5,7 @@ import course3 from '../assets/images/course3.png';
 import course4 from '../assets/images/course4.png';
 import course5 from '../assets/images/course5.png';
 import course6 from '../assets/images/course6.png';
+import { Link } from 'react-router-dom';
 
 function DashboardResource() {
      const courses = [
@@ -32,6 +33,7 @@ function DashboardResource() {
        {/* Course Cards Grid */}
        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-2 lg:mt-0'>
             {courses.map((course) => (
+              <Link to={`/dashboard/dashboardresource/${course.id}`}>
               <div key={course.id} className='bg-white rounded-lg shadow-md overflow-hidden'>
                 {/* Course Image */}
                 <img src={course.image} alt={course.title} className='w-full h-40 object-cover' />
@@ -42,6 +44,7 @@ function DashboardResource() {
                   <p className='text-[12px]'>{course.descripton}</p>
                 </div>
               </div>
+              </Link>
             ))}
        </div>
     </div>

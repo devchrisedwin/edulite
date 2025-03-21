@@ -45,7 +45,7 @@ function Home() {
           </p>
 
           <div className='w-full md:w-[200px] m-auto mt-[30px]'>
-            <button className='bg-[#0A751D] text-white text-[13px] p-1.5 w-full md:w-[150px] font-bold rounded'>
+            <button className='bg-[#0A751D] text-white text-[13px] p-1.5 md:w-[150px] font-bold rounded'>
               Start Learning Now
             </button>
           </div>
@@ -142,7 +142,7 @@ function Home() {
 
         <Link to='/courses'>
           <div className='w-full md:w-[200px] m-auto mt-[30px]'>
-            <button className='bg-[#0A751D] text-white text-[13px] p-2 w-full md:w-[150px] font-bold rounded'>
+            <button className='bg-[#0A751D] text-white text-[13px] p-2 md:w-[150px] font-bold rounded'>
               Browse All Courses
             </button>
           </div>
