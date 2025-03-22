@@ -93,7 +93,7 @@ const OTPVerification = ({ onNext, onPrevious }) => {
           <CheckCircleOutlined  style={{ color: '#0A751D', fontSize: '54px' }} 
           className='mb-4' />
           <h2 className='text-xl mb-2 font-bold'>Congratulations!</h2>
-          <p className='text-gray-600 mb-6'>Your account has been verified</p>
+          <p className='text-gray-600 mb-6'>Sign up successfull and your account has been verified</p>
           <Button
             type='primary'
             style={{ backgroundColor: '#0A751D', borderColor: '#0A751D', width: "160px" }}

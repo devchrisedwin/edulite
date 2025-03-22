@@ -76,7 +76,7 @@ function Navbar() {
             {isLoggedIn ? (
               // Profile Section (Visible when logged in)
               <Link to='/dashboard/dashboardhome'>
-              <div className='flex items-center space-x-2'>
+              <div  onClick={() => setIsMenuOpen(false)} className='flex items-center space-x-2'>
                 <FaUserCircle size={24} className='text-[#0A751D]' />
                 <div className='flex flex-col'>
                   <span className='text-sm font-semibold'>John Doe</span>
