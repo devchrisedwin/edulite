@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion'; // Import motion from Framer Motion
 import course1 from '../assets/images/course1.png';
 import course2 from '../assets/images/course2.png';
 import course3 from '../assets/images/course3.png';
@@ -18,30 +19,59 @@ function DashboardHome() {
     { id: 6, title: 'Course 6', image: course6, progress: 50 },
   ];
 
+  // Framer Motion animations
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  const slideIn = {
+    hidden: { opacity: 0, x: -50 }, // Slide in from the left
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
+  };
+
+  const staggerChildren = {
+    visible: { transition: { staggerChildren: 0.2 } },
+  };
+
   return (
     <div className='p-4'>
       {/* Header */}
-      <div className='mb-6'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={fadeInUp}
+        className='mb-6'
+      >
         <h1 className='font-bold text-2xl mt-5'>Welcome Nana</h1>
         <p className='text-gray-600 mb-8'>Continue Learning - Pick up where you left off!</p>
 
         <div className='flex justify-between items-center mt-2'>
-           <button className='text-sm px-4 py-2 rounded font-bold'>
-             Resume last lesson
-           </button>
+          <button className='text-sm px-4 py-2 rounded font-bold'>
+            Resume last lesson
+          </button>
           <button className='font-semibold flex items-center text-sm'>
-            See all <MdKeyboardArrowRight/>
+            See all <MdKeyboardArrowRight />
           </button>
         </div>
-      </div>
-
-      {/* Subheader */}
-      
+      </motion.div>
 
       {/* Course Cards Grid */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={staggerChildren}
+        className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'
+      >
         {courses.map((course) => (
-          <div key={course.id} className='bg-white rounded-lg shadow-md overflow-hidden'>
+          <motion.div
+            key={course.id}
+            variants={slideIn} // Apply slideIn animation
+            initial='hidden'
+            whileInView='visible' // Trigger animation when in view
+            viewport={{ once: true }} // Only trigger once
+            className='bg-white rounded-lg shadow-md overflow-hidden'
+          >
             {/* Course Image */}
             <img src={course.image} alt={course.title} className='w-full h-40 object-cover' />
 
@@ -57,9 +87,9 @@ function DashboardHome() {
                 ></div>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

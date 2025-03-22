@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion'; // Import motion from Framer Motion
 import heroImg1 from '../assets/images/hero-img1.png';
 import heroImg2 from '../assets/images/hero-img2.png';
 import course1 from '../assets/images/course1.png';
@@ -32,27 +33,64 @@ function Home() {
     setShowAnswer(!showAnswer);
   }
 
+  // Framer Motion animations
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  const staggerChildren = {
+    visible: { transition: { staggerChildren: 0.2 } },
+  };
+
+  const slideIn = {
+    hidden: { opacity: 0, x: -50 }, // Slide in from the left
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
+  };
+
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.6 } },
+  };
+
   return (
     <>
       {/* Header Section */}
-      <div className='w-full md:w-[90%] m-auto px-4'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={fadeInUp}
+        className='w-full md:w-[90%] m-auto px-4'
+      >
         <div className='mt-[60px] w-full md:w-[80%] lg:w-[55%] m-auto'>
-          <h1 className='text-2xl md:text-3xl lg:text-4xl text-[#050505] text-center font-bold'>
+          <motion.h1
+            variants={fadeInUp}
+            className='text-2xl md:text-3xl lg:text-4xl text-[#050505] text-center font-bold'
+          >
             Quality Education for Every Nigerian Child Anytime, Anywhere
-          </h1>
-          <p className='text-center mt-1.5 text-sm md:text-base'>
+          </motion.h1>
+          <motion.p
+            variants={fadeInUp}
+            className='text-center mt-1.5 text-sm md:text-base'
+          >
             Bridging the education gap with technology—Learn online or offline for free
-          </p>
+          </motion.p>
 
-          <div className='w-full md:w-[200px] m-auto mt-[30px]'>
+          <motion.div
+            variants={fadeInUp}
+            className='w-full md:w-[200px] m-auto mt-[30px]'
+          >
             <button className='bg-[#0A751D] text-white text-[13px] p-1.5 w-full md:w-[150px] font-bold rounded'>
               Start Learning Now
             </button>
-          </div>
+          </motion.div>
         </div>
 
         {/* Hero Images */}
-        <div className='w-full h-auto md:h-[400px] mt-8 relative'>
+        <motion.div
+          variants={fadeInUp}
+          className='w-full h-auto md:h-[400px] mt-8 relative'
+        >
           {isMobile ? (
             <img className='w-full m-auto' src={course1} alt='Course 1' />
           ) : (
@@ -65,26 +103,40 @@ function Home() {
               />
             </>
           )}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Statistics Section */}
-      <div className='h-auto md:h-[100px] bg-[#0A751D] flex flex-col md:flex-row items-center justify-evenly py-4 md:py-0'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={staggerChildren}
+        className='h-auto md:h-[100px] bg-[#0A751D] flex flex-col md:flex-row items-center justify-evenly py-4 md:py-0'
+      >
         {[
           { value: '20,000+', label: 'Active Users across Nigeria' },
           { value: '95%', label: 'Students reported improvement' },
           { value: '50,000+', label: 'Questions and answers' },
           { value: '10+', label: 'Years of experience' },
         ].map((stat, index) => (
-          <div key={index} className='text-center mb-4 md:mb-0'>
+          <motion.div
+            key={index}
+            variants={fadeInUp}
+            className='text-center mb-4 md:mb-0'
+          >
             <p className='font-bold text-white text-2xl md:text-3xl'>{stat.value}</p>
             <p className='text-[12px] text-white opacity-[0.6]'>{stat.label}</p>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Features Section */}
-      <div className='w-full md:w-[90%] m-auto px-4'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={fadeInUp}
+        className='w-full md:w-[90%] m-auto px-4'
+      >
         <div className='w-full md:w-[340px] m-auto mt-[30px]'>
           <h3 className='text-2xl text-center'>Everything You Need to Learn & Succeed!</h3>
           <p className='text-[11px] opacity-[0.5] text-center mt-1.5'>
@@ -92,7 +144,10 @@ function Home() {
           </p>
         </div>
 
-        <div className='flex flex-col md:flex-row items-center justify-evenly w-full md:w-[80%] m-auto mt-[40px] gap-4'>
+        <motion.div
+          variants={staggerChildren}
+          className='flex flex-col md:flex-row items-center justify-evenly w-full md:w-[80%] m-auto mt-[40px] gap-4'
+        >
           {[
             {
               title: 'Offline Accessibility',
@@ -107,26 +162,42 @@ function Home() {
               description: 'Optimize content to minimize data usage, ensuring affordability to users.',
             },
           ].map((feature, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={fadeInUp}
               className='w-full md:w-[270px] h-auto md:h-[100px] border border-gray-300 p-4 rounded-xl'
             >
               <h3 className='font-bold pb-1.5'>{feature.title}</h3>
               <p className='text-[12px] opacity-[0.6]'>{feature.description}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Course Cards Section */}
-      <div className='w-full md:w-[90%] m-auto px-4'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={fadeInUp}
+        className='w-full md:w-[90%] m-auto px-4'
+      >
         <h3 className='text-center text-2xl text-[#050505] font-semibold mt-[20px]'>
           Find the Perfect Course for You
         </h3>
 
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full md:w-[80%] m-auto mt-[10px]'>
+        <motion.div
+          variants={staggerChildren}
+          className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full md:w-[80%] m-auto mt-[10px]'
+        >
           {[course1, course2, course3, course4, course5, course6].map((course, index) => (
-            <div key={index} className='w-full border border-gray-400 rounded flex flex-col'>
+            <motion.div
+              key={index}
+              variants={slideIn} // Apply slideIn animation
+              initial='hidden'
+              whileInView='visible' // Trigger animation when in view
+              viewport={{ once: true }} // Only trigger once
+              className='w-full border border-gray-400 rounded flex flex-col'
+            >
               <img
                 className='w-[90%] h-[120px] m-auto mt-[10px] object-cover'
                 src={course}
@@ -136,21 +207,29 @@ function Home() {
                 <p className='text-[13px] font-bold'>Mathematics</p>
                 <p className='text-[13px] opacity-[0.6]'>Statistic</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <Link to='/courses'>
-          <div className='w-full md:w-[200px] m-auto mt-[30px]'>
+          <motion.div
+            variants={fadeInUp}
+            className='w-full md:w-[200px] m-auto mt-[30px]'
+          >
             <button className='bg-[#0A751D] text-white text-[13px] p-2 w-full md:w-[150px] font-bold rounded'>
               Browse All Courses
             </button>
-          </div>
+          </motion.div>
         </Link>
-      </div>
+      </motion.div>
 
       {/* FAQ Section */}
-      <div className='w-full md:w-[90%] m-auto px-4'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={fadeInUp}
+        className='w-full md:w-[90%] m-auto px-4'
+      >
         <div className='mt-[50px] text-center'>
           <h3 className='text-[#050505] font-bold text-2xl md:text-3xl'>Frequently Asked Questions</h3>
           <p className='text-[13px] text-gray-600'>
@@ -158,10 +237,14 @@ function Home() {
           </p>
         </div>
 
-        <div className='mt-5'>
+        <motion.div
+          variants={staggerChildren}
+          className='mt-5'
+        >
           {faqs.map((item) => (
-            <div
+            <motion.div
               key={item.id}
+              variants={fadeIn}
               onClick={() => handleFaq(item.id)}
               className='border border-gray-400 w-full md:w-[50%] m-auto mb-2.5 rounded cursor-pointer'
             >
@@ -178,13 +261,18 @@ function Home() {
               {showAnswer && selected === item.id && (
                 <p className='p-2 text-gray-500'>{item.answer}</p>
               )}
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Footer Section */}
-      <div className='flex flex-col md:flex-row items-center justify-between bg-[#EFF0EF] border border-gray-200 rounded p-4 h-auto md:h-[100px] w-full md:w-[70%] m-auto mt-[30px] mb-8'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={fadeInUp}
+        className='flex flex-col md:flex-row items-center justify-between bg-[#EFF0EF] border border-gray-200 rounded p-4 h-auto md:h-[100px] w-full md:w-[70%] m-auto mt-[30px] mb-8'
+      >
         <h3 className='font-semibold text-[#050505] text-center md:text-left mb-2 md:mb-0'>
           Start Learning Today - It's Free
         </h3>
@@ -193,7 +281,7 @@ function Home() {
             Sign Up for Free
           </button>
         </Link>
-      </div>
+      </motion.div>
     </>
   );
 }

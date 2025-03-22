@@ -84,20 +84,6 @@ const Login = ({ onNext, onPrevious }) => {
             Signup with Google
           </Button>
         </Form.Item>
-
-        {/* Navigation Buttons */}
-        <div className='flex justify-between mt-[-5px]'>
-          <Form.Item>
-            <Button type="default" onClick={onPrevious}>
-              <MdKeyboardArrowLeft />
-            </Button>
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              <MdKeyboardArrowRight />
-            </Button>
-          </Form.Item>
-        </div>
       </Form>
     </div>
   );

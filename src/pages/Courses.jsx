@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion'; // Import motion from Framer Motion
 
 import course3 from '../assets/images/course1.png';
 import course1 from '../assets/images/course1.png';
@@ -25,33 +26,68 @@ function Courses() {
     'FutherMathematics',
   ];
 
+  // Framer Motion animations
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  const slideIn = {
+    hidden: { opacity: 0, x: -50 }, // Slide in from the left
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
+  };
+
+  const staggerChildren = {
+    visible: { transition: { staggerChildren: 0.2 } },
+  };
+
   return (
     <div>
       {/* Header Section */}
-      <div className='mt-[60px] w-full md:w-[80%] lg:w-[35%] m-auto px-4'>
-        <h1 className='text-2xl md:text-3xl lg:text-[40px] text-[#050505] text-center font-bold'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={fadeInUp}
+        className='mt-[60px] w-full md:w-[80%] lg:w-[35%] m-auto px-4'
+      >
+        <motion.h1
+          variants={fadeInUp}
+          className='text-2xl md:text-3xl lg:text-[40px] text-[#050505] text-center font-bold'
+        >
           Find the Perfect Course for You
-        </h1>
-        <p className='text-center text-sm md:text-[15px] mt-1.5'>
+        </motion.h1>
+        <motion.p
+          variants={fadeInUp}
+          className='text-center text-sm md:text-[15px] mt-1.5'
+        >
           Explore subjects, exam prep, and career skills designed for secondary school students
-        </p>
+        </motion.p>
 
         {/* Search Bar */}
-        <div className='flex items-center gap-2.5 p-1 w-full md:w-[200px] m-auto mt-[30px] border border-gray-400 rounded'>
+        <motion.div
+          variants={fadeInUp}
+          className='flex items-center gap-2.5 p-1 w-full md:w-[200px] m-auto mt-[30px] border border-gray-400 rounded'
+        >
           <FaSearch />
           <input
             type='text'
             placeholder='Search here'
             className='text-[13px] p-2 w-full outline-none border-none'
           />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Category Filters */}
-      <div className='flex items-center flex-wrap justify-center gap-2 w-full md:w-[80%] lg:w-[80%] m-auto cursor-pointer mt-[20px] px-4'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={fadeInUp}
+        className='flex items-center flex-wrap justify-center gap-2 w-full md:w-[80%] lg:w-[80%] m-auto cursor-pointer mt-[20px] px-4'
+      >
         {categories.map((category) => (
-          <p
+          <motion.p
             key={category}
+            variants={fadeInUp}
             onClick={() => setCourseCat(category)}
             className={`p-1 font-semibold text-[13px] whitespace-nowrap ${
               courseCat === category
@@ -60,16 +96,27 @@ function Courses() {
             }`}
           >
             {category}
-          </p>
+          </motion.p>
         ))}
-      </div>
+      </motion.div>
 
       {/* Course Cards */}
-      <div className='mt-[20px] px-4'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={staggerChildren}
+        className='mt-[20px] px-4'
+      >
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full md:w-[80%] lg:w-[65%] m-auto'>
           {[...Array(12)].map((_, index) => (
             <Link to='/courses/5' key={index}>
-              <div className='w-full h-[220px] border border-gray-400 rounded flex flex-col'>
+              <motion.div
+                variants={slideIn} // Apply slideIn animation
+                initial='hidden'
+                whileInView='visible' // Trigger animation when in view
+                viewport={{ once: true }} // Only trigger once
+                className='w-full h-[220px] border border-gray-400 rounded flex flex-col'
+              >
                 <img
                   className='w-[90%] h-[120px] m-auto mt-[10px] object-cover'
                   src={course5}
@@ -79,14 +126,19 @@ function Courses() {
                   <p className='text-[13px] font-bold'>Mathematics</p>
                   <p className='text-[13px] opacity-[0.6]'>Statistic</p>
                 </div>
-              </div>
+              </motion.div>
             </Link>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Footer Section */}
-      <div className='flex flex-col md:flex-row items-center justify-between bg-[#EFF0EF] border border-gray-200 rounded p-4 h-auto md:h-[100px] w-full md:w-[80%] lg:w-[70%] m-auto mt-[30px] mb-8'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={fadeInUp}
+        className='flex flex-col md:flex-row items-center justify-between bg-[#EFF0EF] border border-gray-200 rounded p-4 h-auto md:h-[100px] w-full md:w-[80%] lg:w-[70%] m-auto mt-[30px] mb-8'
+      >
         <h3 className='font-semibold text-[#050505] text-center md:text-left mb-2 md:mb-0'>
           Start Learning Today - It's Free
         </h3>
@@ -97,7 +149,7 @@ function Courses() {
             Sign Up for Free
           </button>
         </Link>
-      </div>
+      </motion.div>
     </div>
   );
 }

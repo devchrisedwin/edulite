@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion'; // Import motion from Framer Motion
+import { Link } from 'react-router-dom';
+import { MdKeyboardArrowRight } from 'react-icons/md';
+
 import course1 from '../assets/images/course1.png';
 import course2 from '../assets/images/course2.png';
 import course3 from '../assets/images/course3.png';
 import course4 from '../assets/images/course4.png';
 import course5 from '../assets/images/course5.png';
 import course6 from '../assets/images/course6.png';
-import { MdKeyboardArrowRight } from 'react-icons/md';
-import { Link } from 'react-router-dom';
 
 function DashboardCourses() {
   const [courseCat, setCourseCat] = useState('All');
@@ -35,10 +37,30 @@ function DashboardCourses() {
     'FutherMathematics',
   ];
 
+  // Framer Motion animations
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  const slideIn = {
+    hidden: { opacity: 0, x: -50 }, // Slide in from the left
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
+  };
+
+  const staggerChildren = {
+    visible: { transition: { staggerChildren: 0.2 } },
+  };
+
   return (
     <div className='p-4'>
       {/* Header */}
-      <div className='mb-6'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={fadeInUp}
+        className='mb-6'
+      >
         {/* Header */}
         <div className='flex flex-col md:flex-row items-center justify-between'>
           <div className='text-center md:text-left mb-4 md:mb-0'>
@@ -57,9 +79,9 @@ function DashboardCourses() {
             </div>
           ) : (
             <Link to='/dashboard/addcourse'>
-                <div className='bg-[#0A751D] p-2 w-[160px] text-[13px] text-center text-white rounded'>
+              <div className='bg-[#0A751D] p-2 w-[160px] text-[13px] text-center text-white rounded'>
                 <button>Add Course</button>
-                </div>
+              </div>
             </Link>
           )}
         </div>
@@ -80,13 +102,24 @@ function DashboardCourses() {
             </p>
           ))}
         </div> */}
-      </div>
+      </motion.div>
 
       {/* Course Cards Grid */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={staggerChildren}
+        className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'
+      >
         {courses.map((course) => (
-          <Link to={`/dashboard/dashboardcourse/${course.id}`}>
-            <div key={course.id} className='bg-white rounded-lg shadow-md overflow-hidden'>
+          <Link to={`/dashboard/dashboardcourse/${course.id}`} key={course.id}>
+            <motion.div
+              variants={slideIn} // Apply slideIn animation
+              initial='hidden'
+              whileInView='visible' // Trigger animation when in view
+              viewport={{ once: true }} // Only trigger once
+              className='bg-white rounded-lg shadow-md overflow-hidden'
+            >
               {/* Course Image */}
               <img src={course.image} alt={course.title} className='w-full h-40 object-cover' />
 
@@ -94,10 +127,10 @@ function DashboardCourses() {
               <div className='p-4'>
                 <h2 className='font-semibold text-lg mb-2'>{course.title}</h2>
               </div>
-            </div>
+            </motion.div>
           </Link>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

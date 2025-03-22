@@ -3,10 +3,12 @@ import { Form, Input, Button, Modal } from 'antd';
 import { CheckCircleOutlined, CheckOutlined } from '@ant-design/icons';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { AuthFormDataContext } from '../context/AuthFormDataContext';
+import { useNavigate } from 'react-router-dom';
 
 const OTPVerification = ({ onNext, onPrevious }) => {
   const [otp, setOtp] = useState(['', '', '', '']); // State to store OTP values
   const [isModalVisible, setIsModalVisible] = useState(false); // State to control the success modal
+  const navigate = useNavigate();
   const { formData, setFormData } = useContext(AuthFormDataContext)
 
   const handleChange = (index, value) => {
@@ -27,6 +29,7 @@ const OTPVerification = ({ onNext, onPrevious }) => {
 
   const handleModalClose = () => {
     setIsModalVisible(false);
+    navigate('/')
   };
 
   return (
@@ -72,16 +75,6 @@ const OTPVerification = ({ onNext, onPrevious }) => {
             style={{backgroundColor: "#0A751D", color: "white", width: "100%"}}>Continue</Button>
             </Form.Item>
         </div>
-    
-
-            <Form.Item>
-                <Button type="default" onClick={onPrevious} style={{ marginRight: 8 }}>
-                <MdKeyboardArrowLeft/>
-                </Button>
-                <Button type="primary" htmlType="submit">
-                <MdKeyboardArrowRight/>
-                </Button>
-            </Form.Item>
         </Form>
         <Modal
         open={isModalVisible}
@@ -93,7 +86,7 @@ const OTPVerification = ({ onNext, onPrevious }) => {
           <CheckCircleOutlined  style={{ color: '#0A751D', fontSize: '54px' }} 
           className='mb-4' />
           <h2 className='text-xl mb-2 font-bold'>Congratulations!</h2>
-          <p className='text-gray-600 mb-6'>Sign up successfull and your account has been verified</p>
+          <p className='text-gray-600 mb-6'>Sign up successful and your account has been verified</p>
           <Button
             type='primary'
             style={{ backgroundColor: '#0A751D', borderColor: '#0A751D', width: "160px" }}
