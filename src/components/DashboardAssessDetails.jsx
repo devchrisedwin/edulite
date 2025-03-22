@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-function Assessment() {
+function DashboardAssessDetails() {
   return (
     <div className="p-4">
       {/* Responsive Heading */}
@@ -68,7 +68,7 @@ function Assessment() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Assessment
+export default DashboardAssessDetails;

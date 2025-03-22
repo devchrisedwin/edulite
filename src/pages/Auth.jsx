@@ -9,7 +9,7 @@ import UploadProfilePic from '../components/UploadProfilePic';
 
 function Auth() {
   const [currentStep, setCurrentStep] = useState(0);
-  const steps = ['Signup', 'OTP Verification', 'Login', 'Select Preference', 'Upload Profile Picture'];
+  const steps = ['Signup', 'Login', 'Select Preference','OTP Verification', ];
 
   const handleNext = () => {
     setCurrentStep((prevStep) => (prevStep < steps.length - 1 ? prevStep + 1 : prevStep));
@@ -24,13 +24,13 @@ function Auth() {
       case 0:
         return <Signup onNext={handleNext} />;
       case 1:
-        return <OTPVerification onNext={handleNext} onPrevious={handlePrevious} />;
-      case 2:
         return <Login onNext={handleNext} onPrevious={handlePrevious} />;
-      case 3:
+      case 2:
         return <SelectPreference onNext={handleNext} onPrevious={handlePrevious} />;
-      case 4:
-        return <UploadProfilePic onPrevious={handlePrevious} />;
+      // case 3:
+      //   return <UploadProfilePic onNext={handleNext} onPrevious={handlePrevious} />;
+      case 3:
+        return <OTPVerification onPrevious={handlePrevious} />;
       default:
         return null;
     }

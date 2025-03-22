@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Button, Checkbox, Space, Form } from 'antd';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { AuthFormDataContext } from '../context/AuthFormDataContext';
@@ -41,7 +41,13 @@ const SelectPreference = ({ onNext, onPrevious }) => {
   const onFinish = () => {
     setFormData((prevData) => ({ ...prevData, preferences: selectedPreferences }));
     onNext(); // Move to the next step
+    console.log(formData)
   };
+
+  // Log formData whenever it changes
+  // useEffect(() => {
+  //   console.log(formData);
+  // }, [formData]);
 
   return (
     <Form form={form} onFinish={onFinish}> {/* Wrap the component in a Form */}
@@ -79,21 +85,10 @@ const SelectPreference = ({ onNext, onPrevious }) => {
             htmlType="submit" // Ensure this button submits the form
             style={{ width: '100%', marginTop: '40px', backgroundColor: '#0A751D' }}
           >
-            Continue
+            Sign up
           </Button>
         </Form.Item>
 
-        {/* Navigation Buttons */}
-        <div className='mt-[-5px]'>
-          <Form.Item>
-            <Button type="default" onClick={onPrevious} style={{ marginRight: 8 }}>
-              <MdKeyboardArrowLeft />
-            </Button>
-            <Button type="primary" onClick={onNext}>
-              <MdKeyboardArrowRight />
-            </Button>
-          </Form.Item>
-        </div>
       </div>
     </Form>
   );

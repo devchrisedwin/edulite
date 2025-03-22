@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
-import { Form, Input, Button } from 'antd';
-import { CheckOutlined } from '@ant-design/icons';
+import { Form, Input, Button, Modal } from 'antd';
+import { CheckCircleOutlined, CheckOutlined } from '@ant-design/icons';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { AuthFormDataContext } from '../context/AuthFormDataContext';
 
 const OTPVerification = ({ onNext, onPrevious }) => {
   const [otp, setOtp] = useState(['', '', '', '']); // State to store OTP values
+  const [isModalVisible, setIsModalVisible] = useState(false); // State to control the success modal
   const { formData, setFormData } = useContext(AuthFormDataContext)
 
   const handleChange = (index, value) => {
@@ -22,7 +23,10 @@ const OTPVerification = ({ onNext, onPrevious }) => {
   const onFinish = () => {
     const otpNumber = otp.join(''); // Combine OTP digits into a single string
     setFormData((prevData) => ({ ...prevData, otp: otpNumber }));
-    onNext(); // Move to the next step
+  };
+
+  const handleModalClose = () => {
+    setIsModalVisible(false);
   };
 
   return (
@@ -64,7 +68,7 @@ const OTPVerification = ({ onNext, onPrevious }) => {
             <p className='text-center mt-3 text-[12px] font-semibold p-2'>Didn't recieve email? check your spam folder or promotion folder</p>
 
             <Form.Item>
-            <Button type='default' onClick={onNext}
+            <Button type='default' onClick={()=>{setIsModalVisible(true)}}
             style={{backgroundColor: "#0A751D", color: "white", width: "100%"}}>Continue</Button>
             </Form.Item>
         </div>
@@ -79,6 +83,26 @@ const OTPVerification = ({ onNext, onPrevious }) => {
                 </Button>
             </Form.Item>
         </Form>
+        <Modal
+        open={isModalVisible}
+        onCancel={handleModalClose}
+        footer={null}
+        centered
+      >
+        <div className='text-center p-6'>
+          <CheckCircleOutlined  style={{ color: '#0A751D', fontSize: '54px' }} 
+          className='mb-4' />
+          <h2 className='text-xl mb-2 font-bold'>Congratulations!</h2>
+          <p className='text-gray-600 mb-6'>Your account has been verified</p>
+          <Button
+            type='primary'
+            style={{ backgroundColor: '#0A751D', borderColor: '#0A751D', width: "160px" }}
+            onClick={handleModalClose}
+          >
+            Thank You
+          </Button>
+        </div>
+      </Modal>
     </div>
     
   );

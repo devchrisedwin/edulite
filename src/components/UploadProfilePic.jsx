@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Upload, Button, Modal, message } from 'antd';
-import { CameraOutlined } from '@ant-design/icons';
+import { CameraOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import { AuthFormDataContext } from '../context/AuthFormDataContext';
 
-const UploadProfilePic = ({ onPrevious }) => {
+const UploadProfilePic = ({ onNext, onPrevious }) => {
   const [file, setFile] = useState(null); // State to store the uploaded file
   const [isModalVisible, setIsModalVisible] = useState(false); // State to control the success modal
   const { formData } = useContext(AuthFormDataContext); // Access form data from context
@@ -35,6 +35,9 @@ const UploadProfilePic = ({ onPrevious }) => {
   const logFormData = () => {
     const formDataToLog = { ...formData, profilePicture: file };
     console.log('Form Data:', formDataToLog);
+    setTimeout(()=>{
+      onNext()
+    },2000)
   };
 
   // Close the success modal
@@ -76,26 +79,37 @@ const UploadProfilePic = ({ onPrevious }) => {
           type="primary"
           onClick={handleUploadButtonClick}
         >
-          Upload
+          sign up
         </Button>
       </div>
 
       {/* Success Modal */}
       <Modal
-        title="Upload Successful"
         open={isModalVisible}
-        onOk={handleModalClose}
         onCancel={handleModalClose}
+        footer={null}
+        centered
       >
-        <p>Your profile picture has been uploaded successfully!</p>
+        <div className='text-center p-6'>
+          <CheckCircleOutlined  style={{ color: '#0A751D', fontSize: '54px' }} 
+          className='mb-4' />
+          <h2 className='text-xl mb-2 font-bold'>Sign up successful</h2>
+          <Button
+            type='primary'
+            style={{ backgroundColor: '#0A751D', borderColor: '#0A751D', width: "160px" }}
+            onClick={handleModalClose}
+          >
+            Thank You
+          </Button>
+        </div>
       </Modal>
 
-      {/* Navigation Buttons */}
+      {/* Navigation Buttons
       <div style={{ marginTop: 24 }}>
         <Button type="default" onClick={onPrevious} style={{ marginRight: 8 }}>
           Previous
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };

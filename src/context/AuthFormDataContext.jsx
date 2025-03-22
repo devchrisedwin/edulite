@@ -11,7 +11,7 @@ export const AuthFormDataProvider = ({ children }) => {
     role: '',
     password: '',
     preferences: [],
-    profilePicture: null,
+    // profilePicture: null,
   });
 
   return (

@@ -85,15 +85,17 @@ function DashboardCourses() {
       {/* Course Cards Grid */}
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
         {courses.map((course) => (
-          <div key={course.id} className='bg-white rounded-lg shadow-md overflow-hidden'>
-            {/* Course Image */}
-            <img src={course.image} alt={course.title} className='w-full h-40 object-cover' />
+          <Link to={`/dashboard/dashboardcourse/${course.id}`}>
+            <div key={course.id} className='bg-white rounded-lg shadow-md overflow-hidden'>
+              {/* Course Image */}
+              <img src={course.image} alt={course.title} className='w-full h-40 object-cover' />
 
-            {/* Course Title */}
-            <div className='p-4'>
-              <h2 className='font-semibold text-lg mb-2'>{course.title}</h2>
+              {/* Course Title */}
+              <div className='p-4'>
+                <h2 className='font-semibold text-lg mb-2'>{course.title}</h2>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
