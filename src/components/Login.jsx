@@ -6,10 +6,25 @@ import { AuthFormDataContext } from '../context/AuthFormDataContext';
 
 const Login = ({ onNext, onPrevious }) => {
   const [form] = Form.useForm();
-  const { formData, setFormData } = useContext(AuthFormDataContext);
+  const { formData, updateFormData } = useContext(AuthFormDataContext);
 
   const onFinish = (values) => {
-    setFormData((prevData) => ({ ...prevData, password: values.password }));
+    // Ensure password and confirm password match
+    if (values.password !== values.confirmpassword) {
+      form.setFields([
+        {
+          name: 'confirmpassword',
+          errors: ['Passwords do not match'],
+        },
+      ]);
+      return; // Stop execution if passwords don't match
+    }
+
+    // Update formData in context with the new password
+    updateFormData({
+      password: values.password,
+    });
+
     onNext(); // Move to the next step
   };
 

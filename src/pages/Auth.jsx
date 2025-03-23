@@ -9,7 +9,7 @@ import UploadProfilePic from '../components/UploadProfilePic';
 
 function Auth() {
   const [currentStep, setCurrentStep] = useState(0);
-  const steps = ['Signup', 'Login', 'Select Preference','OTP Verification', ];
+  const steps = ['Signup', 'Login', 'Select Preference' ];
 
   const handleNext = () => {
     setCurrentStep((prevStep) => (prevStep < steps.length - 1 ? prevStep + 1 : prevStep));
@@ -29,15 +29,15 @@ function Auth() {
         return <SelectPreference onNext={handleNext} onPrevious={handlePrevious} />;
       // case 3:
       //   return <UploadProfilePic onNext={handleNext} onPrevious={handlePrevious} />;
-      case 3:
-        return <OTPVerification onPrevious={handlePrevious} />;
+      // case 3:
+      //   return <OTPVerification onPrevious={handlePrevious} />;
       default:
         return null;
     }
   };
 
   return (
-    <div className='flex flex-col md:flex-row items-center w-full md:w-[90%] lg:w-[60%] h-auto md:h-[600px] m-auto mt-20 overflow-hidden shadow-lg rounded-lg'>
+    <div className='flex flex-col md:flex-row items-center w-full md:w-[90%] lg:w-[60%] h-[700px] md:h-auto m-auto mt-20 overflow-hidden shadow-lg rounded-lg'>
       {/* Left Section (Form and Progress Bar) */}
       <div className='w-full md:w-[50%] p-2 overflow-hidden'>
         <div className='text-[#0A751D] w-full h-[50px] m-auto text-[12px] font-semibold mb-2 mt-4 md:mt-16'>
@@ -54,7 +54,7 @@ function Auth() {
       </div>
 
       {/* Right Section (Image/Background) */}
-      <div className='w-full md:w-[50%] h-[300px] md:h-[600px] signup-right bg-cover bg-center'></div>
+      <div className='w-full md:w-[50%] h-auto md:h-[700px] signup-right bg-cover bg-center'></div>
     </div>
   );
 }

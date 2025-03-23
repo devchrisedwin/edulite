@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 function MainLogin() {
     const [form] = Form.useForm();
@@ -10,7 +11,7 @@ function MainLogin() {
     };
 
     return (
-        <div className='border flex flex-col md:flex-row items-center w-full md:w-[60%] h-auto md:h-[500px] m-auto mt-10 overflow-hidden'>
+        <div className='border flex flex-col md:flex-row items-center w-full md:w-[60%] h-auto md:h-[500px] m-auto mt-24 overflow-hidden'>
             
             {/* Left Section */}
             <div className='w-full md:w-[50%] p-5 h-auto md:h-[400px] overflow-hidden'>
@@ -34,6 +35,9 @@ function MainLogin() {
                     >
                         <Input.Password />
                     </Form.Item>
+                    <Link to='/forgotpassword'>
+                    <p className='text-[#0A751D] text-[12px] text-right'>forgot password</p>
+                    </Link>
 
                     {/* Login Button */}
                     <Form.Item>
@@ -45,6 +49,7 @@ function MainLogin() {
                             Login
                         </Button>
                     </Form.Item>
+                     <p className='mt-[-22px] text-center pb-2'>Don't have an account? <Link to='/auth'>sign up</Link> here</p>
 
                     {/* Login with Google Button */}
                     <Form.Item>

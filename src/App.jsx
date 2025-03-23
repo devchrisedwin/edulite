@@ -20,6 +20,9 @@ import AddCourse from "./components/AddCourse"
 import CoursePreview from "./components/CoursePreview"
 import DashboardAssessDetails from "./components/DashboardAssessDetails"
 import DashboardCoursesDetail from "./components/DashboardCoursesDetail"
+import ForgotPassword from "./components/ForgotPassword"
+import CreateNewPassword from "./components/CreateNewPassword"
+import OTPVerification from "./components/OTPVerification"
 
 // import 'antd/dist/reset.css'; // For Ant Design v5
 
@@ -36,7 +39,10 @@ function App() {
           <Route path="/courses" element={<Courses/>}/>
           <Route path="/courses/:id" element={<CourseDetails/>}/>
           <Route path="/auth" element={<Auth/>}/>
+          <Route path="/otp" element={<OTPVerification/>}/>
           <Route path="/login" element={<MainLogin/>}/>
+          <Route path="/forgotpassword" element={<ForgotPassword/>}/>
+          <Route path="/createnewpassword" element={<CreateNewPassword/>}/>
           <Route path="/dashboard" element={<Dashboard/>}>
             <Route path="dashboardhome" element={<DashbordHome/>}/>
             <Route path="dashboardcourse" element={<DashboardCourses/>}/>
