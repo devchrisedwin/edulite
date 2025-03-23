@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function DashboardAssessment() {
+  let userRole = 'teacher'
   return (
     <div className='p-4'>
       {/* Header */}
@@ -12,7 +13,7 @@ function DashboardAssessment() {
         </div>
 
         <div className='bg-[#0A751D] p-2 w-[160px] text-[13px] mb-5 text-center text-white rounded'>
-          <button>Assessment Done</button>
+          {userRole === 'student' && <button>Assessment Done</button> }
         </div>
       </div>
 

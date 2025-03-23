@@ -8,6 +8,8 @@ import course6 from '../assets/images/course6.png';
 import { Link } from 'react-router-dom';
 
 function DashboardResource() {
+
+    let userRole = 'teacher'
      const courses = [
             { id: 1, title: 'Course 1', image: course1, descripton: 'this is an amazing course it covers different concepts' },
             { id: 2, title: 'Course 2', image: course2, descripton: 'this is an amazing course it covers different concepts' },
@@ -26,7 +28,7 @@ function DashboardResource() {
         </div>
 
         <div className='bg-[#0A751D] p-2 w-[160px] text-[13px] text-center text-white rounded'>
-          <button>Downloaded Resources</button>
+          {userRole === 'student' && <button>Downloaded Resources</button>}
         </div>
       </div>
 

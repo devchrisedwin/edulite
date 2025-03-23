@@ -68,9 +68,11 @@ function DashboardTHome() {
             variants={fadeInUp}
             className='flex flex-wrap justify-center gap-4 mt-6'
           >
+            <Link to='/dashboard/addcourse'>
             <button className='bg-[#0A751D] text-white text-[13px] p-2 w-[150px] font-bold rounded'>
               Create New Course
             </button>
+            </Link>
             <button className='bg-[#0A751D] text-white text-[13px] p-2 w-[150px] font-bold rounded'>
               View Students
             </button>
