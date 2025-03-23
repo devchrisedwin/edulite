@@ -32,8 +32,8 @@ const OTPVerification = ({ onNext, onPrevious }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          otp: otpNumber,
-          email: formData.email, // Assuming email is stored in formData
+          otp: otpNumber, // Pass the OTP
+          email: formData.email, // Pass the email from formData
         }),
       });
 
@@ -63,7 +63,7 @@ const OTPVerification = ({ onNext, onPrevious }) => {
 
   const handleModalClose = () => {
     setIsModalVisible(false);
-    navigate('/');
+    navigate('/login');
   };
 
   // Function to reset the OTP timer
