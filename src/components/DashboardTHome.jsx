@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion'; // Import motion from Framer Motion
 import course1 from '../assets/images/course1.png';
@@ -7,9 +7,12 @@ import course3 from '../assets/images/course1.png';
 import course4 from '../assets/images/course4.png';
 import course5 from '../assets/images/course5.png';
 import course6 from '../assets/images/course6.png';
+import { UserContext } from '../context/UserContext';
 
 function DashboardTHome() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+   const {user} = useContext(UserContext)
+  let userName = user?.data?.firstName + "" + user?.data?.lastName
 
   useEffect(() => {
     const handleResize = () => {
@@ -54,7 +57,7 @@ function DashboardTHome() {
             variants={fadeInUp}
             className='text-2xl md:text-3xl lg:text-4xl text-[#050505] text-center font-bold'
           >
-            Welcome Back, Teacher!
+            Welcome Back, {userName}!
           </motion.h1>
           <motion.p
             variants={fadeInUp}

@@ -23,6 +23,7 @@ import DashboardCoursesDetail from "./components/DashboardCoursesDetail"
 import ForgotPassword from "./components/ForgotPassword"
 import CreateNewPassword from "./components/CreateNewPassword"
 import OTPVerification from "./components/OTPVerification"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 // import 'antd/dist/reset.css'; // For Ant Design v5
 
@@ -35,26 +36,30 @@ function App() {
       <Navbar/>
       <div className="min-h-[100vh]">
         <Routes>
+          
           <Route path="/" element={<Home/>}/>
-          <Route path="/courses" element={<Courses/>}/>
-          <Route path="/courses/:id" element={<CourseDetails/>}/>
           <Route path="/auth" element={<Auth/>}/>
           <Route path="/otp" element={<OTPVerification/>}/>
           <Route path="/login" element={<MainLogin/>}/>
           <Route path="/forgotpassword" element={<ForgotPassword/>}/>
           <Route path="/createnewpassword" element={<CreateNewPassword/>}/>
-          <Route path="/dashboard" element={<Dashboard/>}>
-            <Route path="dashboardhome" element={<DashbordHome/>}/>
-            <Route path="dashboardcourse" element={<DashboardCourses/>}/>
-            <Route path="dashboardcourse/:id" element={<DashboardCoursesDetail/>}/>
-            <Route path="addcourse" element={<AddCourse/>}/>
-            <Route path="preview" element={<CoursePreview/>}/>
-            <Route path="dashboardassessment" element={<DashboardAssessment/>}/>
-            <Route path="dashboardassessment/:id" element={<DashboardAssessDetails/>}/>
-            <Route path="dashboardresource" element={<DashboardResource/>}/>
-            <Route path="dashboardresource/:id" element={<ResourceDetail/>}/>
-            <Route path="dashboardprofile" element={<DashboardProfile/>}/>
+          <Route element={<ProtectedRoute/>}>
+            <Route path="/courses" element={<Courses/>}/>
+            <Route path="/courses/:id" element={<CourseDetails/>}/>
+            <Route path="/dashboard" element={<Dashboard/>}>
+              <Route path="dashboardhome" element={<DashbordHome/>}/>
+              <Route path="dashboardcourse" element={<DashboardCourses/>}/>
+              <Route path="dashboardcourse/:id" element={<DashboardCoursesDetail/>}/>
+              <Route path="addcourse" element={<AddCourse/>}/>
+              <Route path="preview" element={<CoursePreview/>}/>
+              <Route path="dashboardassessment" element={<DashboardAssessment/>}/>
+              <Route path="dashboardassessment/:id" element={<DashboardAssessDetails/>}/>
+              <Route path="dashboardresource" element={<DashboardResource/>}/>
+              <Route path="dashboardresource/:id" element={<ResourceDetail/>}/>
+              <Route path="dashboardprofile" element={<DashboardProfile/>}/>
+            </Route>
           </Route>
+          
         </Routes>
       </div>
       <Footer/>

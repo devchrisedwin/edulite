@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion'; // Import motion from Framer Motion
 import { Link } from 'react-router-dom';
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -9,10 +9,12 @@ import course3 from '../assets/images/course3.png';
 import course4 from '../assets/images/course4.png';
 import course5 from '../assets/images/course5.png';
 import course6 from '../assets/images/course6.png';
+import { UserContext } from '../context/UserContext';
 
 function DashboardCourses() {
   const [courseCat, setCourseCat] = useState('All');
-  const userRole = 'teacher'; // Replace this with dynamic role from context or props
+  const {user } = useContext(UserContext);
+  const userRole = user?.data?.roleName || user?.data?.role?.name; // Replace this with dynamic role from context or props
 
   const courses = [
     { id: 1, title: 'Course 1', image: course1 },

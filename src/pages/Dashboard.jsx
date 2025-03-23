@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { MdDashboard, MdAssignment, MdLibraryBooks, MdPerson, MdLogout, MdMenu, MdClose } from 'react-icons/md';
 import { FaBookOpen } from 'react-icons/fa';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 function Dashboard() {
   const [activeItem, setActiveItem] = useState('Home'); // State to track active item
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to toggle sidebar on mobile
+  const {clearUser} = useContext(UserContext)
+  
+  let navigate = useNavigate()
 
   const sidebarItems = [
     { id: 'Home', icon: <MdDashboard size={24} />, path: 'dashboardhome' },
@@ -22,6 +26,11 @@ function Dashboard() {
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleLogout = () => {
+    clearUser(); // Clear user data from context and localStorage
+    navigate('/login'); // Redirect to the login page
   };
 
   return (
@@ -74,7 +83,7 @@ function Dashboard() {
               onClick={() => console.log('Logout clicked')}
             >
               <MdLogout size={24} className='mr-2' />
-              <p>Logout</p>
+              <p onClick={handleLogout}>Logout</p>
             </div>
           </div>
         </div>

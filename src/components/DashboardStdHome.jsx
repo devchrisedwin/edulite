@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { motion } from 'framer-motion'; // Import motion from Framer Motion
 import course1 from '../assets/images/course1.png';
 import course2 from '../assets/images/course2.png';
@@ -7,6 +7,7 @@ import course4 from '../assets/images/course4.png';
 import course5 from '../assets/images/course5.png';
 import course6 from '../assets/images/course6.png';
 import { MdKeyboardArrowRight } from 'react-icons/md';
+import { UserContext } from '../context/UserContext';
 
 function DashboardStdHome() {
    // Dummy course data
@@ -18,6 +19,9 @@ function DashboardStdHome() {
     { id: 5, title: 'Course 5', image: course5, progress: 90 },
     { id: 6, title: 'Course 6', image: course6, progress: 50 },
   ];
+
+  const {user} = useContext(UserContext)
+  let userName = user?.data?.firstName + "" + user?.data?.lastName
 
   // Framer Motion animations
   const fadeInUp = {
@@ -43,7 +47,7 @@ function DashboardStdHome() {
         variants={fadeInUp}
         className='mb-6'
       >
-        <h1 className='font-bold text-2xl mt-5'>Welcome Nana</h1>
+        <h1 className='font-bold text-2xl mt-5'>Welcome {userName}</h1>
         <p className='text-gray-600 mb-8'>Continue Learning - Pick up where you left off!</p>
 
         <div className='flex justify-between items-center mt-2'>

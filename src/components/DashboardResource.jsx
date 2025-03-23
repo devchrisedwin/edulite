@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import course1 from '../assets/images/course1.png';
 import course2 from '../assets/images/course2.png';
 import course3 from '../assets/images/course3.png';
@@ -6,17 +6,20 @@ import course4 from '../assets/images/course4.png';
 import course5 from '../assets/images/course5.png';
 import course6 from '../assets/images/course6.png';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 function DashboardResource() {
 
-    let userRole = 'teacher'
+   const {user } = useContext(UserContext);
+   
+   const userRole = user?.data?.roleName || user?.data?.role?.name;
      const courses = [
-            { id: 1, title: 'Course 1', image: course1, descripton: 'this is an amazing course it covers different concepts' },
-            { id: 2, title: 'Course 2', image: course2, descripton: 'this is an amazing course it covers different concepts' },
-            { id: 3, title: 'Course 3', image: course3, descripton: 'this is an amazing course it covers different concepts' },
-            { id: 4, title: 'Course 4', image: course4, descripton: 'this is an amazing course it covers different concepts' },
-            { id: 5, title: 'Course 5', image: course5, descripton: 'this is an amazing course it covers different concepts' },
-            { id: 6, title: 'Course 6', image: course6, descripton: 'this is an amazing course it covers different concepts' },
+        { id: 1, title: 'Course 1', image: course1, descripton: 'this is an amazing course it covers different concepts' },
+        { id: 2, title: 'Course 2', image: course2, descripton: 'this is an amazing course it covers different concepts' },
+        { id: 3, title: 'Course 3', image: course3, descripton: 'this is an amazing course it covers different concepts' },
+        { id: 4, title: 'Course 4', image: course4, descripton: 'this is an amazing course it covers different concepts' },
+        { id: 5, title: 'Course 5', image: course5, descripton: 'this is an amazing course it covers different concepts' },
+        { id: 6, title: 'Course 6', image: course6, descripton: 'this is an amazing course it covers different concepts' },
     ];
     
   return (

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
+
 
 function DashboardAssessment() {
-  let userRole = 'teacher'
+  const {user } = useContext(UserContext);
+  const userRole = user?.data?.roleName || user?.data?.role?.name;
   return (
     <div className='p-4'>
       {/* Header */}

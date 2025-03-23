@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import DashboardStdHome from './DashboardStdHome';
 import DashboardTHome from './DashboardTHome';
+import { UserContext } from '../context/UserContext';
 
 function DashboardHome() {
-  const userRole = 'teacher';
+  const {user } = useContext(UserContext);
+
+  const userRole = user?.data?.roleName || user?.data?.role?.name;
 
   return (
     <div className='p-4'>

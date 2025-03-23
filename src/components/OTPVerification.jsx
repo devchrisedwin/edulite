@@ -12,6 +12,19 @@ const OTPVerification = ({ onNext, onPrevious }) => {
   const navigate = useNavigate();
   const { formData, updateFormData } = useContext(AuthFormDataContext);
 
+  // Retrieve email from local storage if it's missing in formData
+  useEffect(() => {
+    const storedEmail = localStorage.getItem('userEmail');
+    console.log('Stored Email:', storedEmail); // Debugging: Check the stored email
+    if (!formData.email && storedEmail) {
+      updateFormData({ email: storedEmail }); // Set the email from local storage
+      console.log('Email set from local storage:', storedEmail); // Debugging
+    } else if (!formData.email) {
+      message.error('Email is missing. Please contact support.');
+      console.error('Email is missing in both formData and local storage.'); // Debugging
+    }
+  }, [formData.email, updateFormData]);
+
   const handleChange = (index, value) => {
     const newOtp = [...otp];
     newOtp[index] = value;
@@ -22,8 +35,11 @@ const OTPVerification = ({ onNext, onPrevious }) => {
       document.getElementById(`otp-input-${index + 1}`).focus();
     }
   };
+
   const verifyOTP = async (otpNumber) => {
     setIsLoading(true); // Start loading
+    console.log('Email:', formData.email); // Debugging: Check the email value
+
     try {
       const response = await fetch('https://edulite-talenvo.onrender.com/api/v1/auth/verify', {
         method: 'POST',
@@ -35,15 +51,15 @@ const OTPVerification = ({ onNext, onPrevious }) => {
           email: formData.email, // Pass the email from formData
         }),
       });
-  
+
       // Check if the response is OK (status code 200-299)
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || 'OTP verification failed. Please try again.');
       }
-  
+
       const data = await response.json();
-  
+
       // OTP verification successful
       setIsModalVisible(true); // Show success modal
       message.success('OTP verified successfully!');
@@ -71,8 +87,37 @@ const OTPVerification = ({ onNext, onPrevious }) => {
   };
 
   // Function to reset the OTP timer
-  const handleResend = () => {
-    setOtpTimer(20); // Reset the timer to its initial value
+  const handleResend = async () => {
+    try {
+      const response = await fetch('https://edulite-talenvo.onrender.com/api/v1/auth/resend-verification-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email, // Pass the email from formData
+        }),
+      });
+
+      // Check if the response is OK (status code 200-299)
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to resend verification token. Please try again.');
+      }
+
+      const data = await response.json();
+
+      // Reset the OTP timer
+      setOtpTimer(20); // Reset the timer to its initial value
+      message.success('Verification token resent successfully!');
+    } catch (error) {
+      console.error('Error resending verification token:', error);
+      if (error.message === 'Failed to fetch') {
+        message.error('Network error. Please check your internet connection.');
+      } else {
+        message.error(error.message || 'An error occurred. Please try again.');
+      }
+    }
   };
 
   useEffect(() => {
@@ -109,7 +154,7 @@ const OTPVerification = ({ onNext, onPrevious }) => {
               </div>
               <h3 className='text-center text-xl font-semibold mt-2'>Input your Verification code</h3>
               <p className='text-center w-[250px] m-auto mt-3'>
-                Please enter the four-digit code sent to your n******@gmail.com for verification
+                Please enter the four-digit code sent to your {formData.email || 'n******@gmail.com'} for verification
               </p>
             </div>
 

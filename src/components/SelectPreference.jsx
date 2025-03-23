@@ -106,6 +106,7 @@ const SelectPreference = ({ onNext, onPrevious }) => {
       if (response.ok) {
         // If the request is successful, proceed to the next step
         message.success('Registration successful!');
+        localStorage.setItem('userEmail', formData.email);
         navigate('/otp')
       } else {
         // If the request fails, show an error message

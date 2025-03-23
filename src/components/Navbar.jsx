@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FaBars, FaTimes, FaUserCircle } from 'react-icons/fa'; // Icons for hamburger menu and profile
-
+import { UserContext } from '../context/UserContext';
+ 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // For mobile menu
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Simulate login status
-  let userRole = "teacher"
+   // Simulate login status
+  const {user } = useContext(UserContext);
+
+  const userRole = user?.data?.roleName || user?.data?.role?.name;
+  const userEmail = user?.data?.email
+  let userName = user?.data?.firstName + "" + user?.data?.lastName
+  let isLoggedIn = user?.data?.status
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -75,14 +81,14 @@ function Navbar() {
             </NavLink>
 
             {/* Conditional Rendering Based on Login Status */}
-            {isLoggedIn ? (
+            {isLoggedIn === 'active' ? (
               // Profile Section (Visible when logged in)
               <Link to='/dashboard/dashboardhome'>
               <div  onClick={() => setIsMenuOpen(false)} className='flex items-center space-x-2'>
                 <FaUserCircle size={24} className='text-[#0A751D]' />
                 <div className='flex flex-col'>
-                  <span className='text-sm font-semibold'>John Doe</span>
-                  <span className='text-xs text-gray-500'>john.doe@example.com</span>
+                  <span className='text-sm font-semibold'>{userName}</span>
+                  <span className='text-xs text-gray-500'>{userEmail}</span>
                 </div>
               </div>
               </Link>

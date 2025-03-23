@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion'; // Import motion from Framer Motion
 import heroImg1 from '../assets/images/hero-img1.png';
@@ -13,6 +13,7 @@ import course6 from '../assets/images/course6.png';
 import faq from '../data/faq';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 import Footer from '../components/Footer';
+import { UserContext } from '../context/UserContext';
 
 function Home() {
   const [faqs, setFaqs] = useState(faq);
@@ -20,7 +21,9 @@ function Home() {
   const [selected, setSelected] = useState('');
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  let userRole = "teacher"
+  const {user } = useContext(UserContext);
+ 
+  const userRole = user?.data?.roleName || user?.data?.role?.name;
 
   useEffect(() => {
     const handleResize = () => {
