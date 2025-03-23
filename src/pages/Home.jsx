@@ -98,7 +98,7 @@ function Home() {
           className='w-full h-auto md:h-[400px] mt-8 relative'
         >
           {isMobile ? (
-            <img className='w-full m-auto' src={course1} alt='Course 1' />
+            <img className='w-full m-auto' src={userRole === 'teacher' ? teacherhero : course1} />
           ) : (
             <>
              <img
