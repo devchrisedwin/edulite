@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion'; // Import motion from Framer Motion
 import heroImg1 from '../assets/images/hero-img1.png';
+import teacherhero from '../assets/images/teachershero.png'
 import heroImg2 from '../assets/images/hero-img2.png';
 import course1 from '../assets/images/course1.png';
 import course2 from '../assets/images/course2.png';
@@ -18,6 +19,8 @@ function Home() {
   const [showAnswer, setShowAnswer] = useState(false);
   const [selected, setSelected] = useState('');
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  let userRole = "teacher"
 
   useEffect(() => {
     const handleResize = () => {
@@ -62,18 +65,21 @@ function Home() {
         variants={fadeInUp}
         className='w-full md:w-[90%] m-auto px-4'
       >
-        <div className='mt-[60px] w-full md:w-[80%] lg:w-[55%] m-auto'>
+        <div className='mt-[70px] w-full md:w-[80%] lg:w-[55%] m-auto'>
           <motion.h1
             variants={fadeInUp}
             className='text-2xl md:text-3xl lg:text-4xl text-[#050505] text-center font-bold'
           >
-            Quality Education for Every Nigerian Child Anytime, Anywhere
+           {userRole === 'teacher' ? 'Empower The Next Generation Teach and Inspire'
+           : 'Quality Education for Every Nigerian Child Anytime, Anywhere'} 
           </motion.h1>
           <motion.p
             variants={fadeInUp}
             className='text-center mt-1.5 text-sm md:text-base'
           >
-            Bridging the education gap with technology—Learn online or offline for free
+            {userRole === 'teacher' ? 
+            'Bridging the education gap with technology—Learn online or offline for free'
+          : 'Join thousands of educators creating lessons, sharing knowledge and making an impact.'}
           </motion.p>
 
           <motion.div
@@ -81,7 +87,7 @@ function Home() {
             className='w-full md:w-[200px] m-auto mt-[30px]'
           >
             <button className='bg-[#0A751D] text-white text-[13px] p-1.5 w-full md:w-[150px] font-bold rounded'>
-              Start Learning Now
+              {userRole === 'teacher' ? 'Start Teaching Now' : 'Start Learning Now'}
             </button>
           </motion.div>
         </div>
@@ -95,11 +101,15 @@ function Home() {
             <img className='w-full m-auto' src={course1} alt='Course 1' />
           ) : (
             <>
-              <img className='w-full md:w-[700px] m-auto' src={heroImg1} alt='Hero 1' />
+             <img
+                className='w-full md:w-[700px] m-auto'
+                src={userRole === 'teacher' ? teacherhero : heroImg1}
+                alt={userRole === 'teacher' ? 'Teacher Hero' : 'Hero 1'}
+              />
               <img
                 className='hidden md:block absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[700px]'
-                src={heroImg2}
-                alt='Hero 2'
+                src={userRole === 'teacher' ? teacherhero : heroImg2}
+                alt={userRole === 'teacher' ? 'Teacher Hero' : 'Hero 2'}
               />
             </>
           )}
@@ -138,7 +148,9 @@ function Home() {
         className='w-full md:w-[90%] m-auto px-4'
       >
         <div className='w-full md:w-[340px] m-auto mt-[30px]'>
-          <h3 className='text-2xl text-center'>Everything You Need to Learn & Succeed!</h3>
+          <h3 className='text-2xl text-center'>
+           {userRole === 'teacher' ? 'Why Teach With Us?' : 'Everything You Need to Learn & Succeed!'} 
+          </h3>
           <p className='text-[11px] opacity-[0.5] text-center mt-1.5'>
             Our platform is designed to provide students with cutting-edge tools and interactive learning.
           </p>
@@ -150,16 +162,18 @@ function Home() {
         >
           {[
             {
-              title: 'Offline Accessibility',
-              description: 'Enable content download for offline use to accommodate areas with unstable network.',
+              title: userRole === 'teacher' ? 'Flexible Teaching' : 'Offline Accessibility',
+              description: userRole === 'teacher' ? 'Upload Prerecorded contents'
+              : 'Enable content download for offline use to accommodate areas with unstable network.',
             },
             {
-              title: 'Live and Pre-recorded Classes',
-              description: 'Interactive learning with expert teachers.',
+              title:  'Live and Pre-recorded Classes',
+              description: userRole === 'teacher' ? 'Monetize premium content and quiz ' : 'Interactive learning with expert teachers.',
             },
             {
               title: 'Low Data Consumption',
-              description: 'Optimize content to minimize data usage, ensuring affordability to users.',
+              description: userRole === 'teacher' ? 'View analytics and student engagements' :
+              'Optimize content to minimize data usage, ensuring affordability to users.',
             },
           ].map((feature, index) => (
             <motion.div
@@ -175,6 +189,7 @@ function Home() {
       </motion.div>
 
       {/* Course Cards Section */}
+      {userRole === 'student' &&
       <motion.div
         initial='hidden'
         animate='visible'
@@ -221,7 +236,7 @@ function Home() {
             </button>
           </motion.div>
         </Link>
-      </motion.div>
+      </motion.div>}
 
       {/* FAQ Section */}
       <motion.div

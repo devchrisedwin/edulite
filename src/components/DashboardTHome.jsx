@@ -49,7 +49,7 @@ function DashboardTHome() {
         variants={fadeInUp}
         className='w-full md:w-[90%] m-auto px-4'
       >
-        <div className='mt-[60px] w-full md:w-[80%] lg:w-[55%] m-auto'>
+        <div className='mt-[40px] w-full md:w-[80%] lg:w-[55%] m-auto'>
           <motion.h1
             variants={fadeInUp}
             className='text-2xl md:text-3xl lg:text-4xl text-[#050505] text-center font-bold'
@@ -118,7 +118,7 @@ function DashboardTHome() {
 
         <motion.div
           variants={staggerChildren}
-          className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full md:w-[80%] m-auto mt-[20px]'
+          className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full md:w-[100%]  m-auto mt-[20px]'
         >
           {[course1, course2, course3, course4, course5, course6].map((course, index) => (
             <motion.div
@@ -130,7 +130,7 @@ function DashboardTHome() {
               className='w-full border border-gray-400 rounded flex flex-col'
             >
               <img
-                className='w-[90%] h-[120px] m-auto mt-[10px] object-cover'
+                className='w-[100%] h-[120px] m-auto mt-[10px] object-cover'
                 src={course}
                 alt={`Course ${index + 1}`}
               />

@@ -5,6 +5,7 @@ import { FaBars, FaTimes, FaUserCircle } from 'react-icons/fa'; // Icons for ham
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // For mobile menu
   const [isLoggedIn, setIsLoggedIn] = useState(true); // Simulate login status
+  let userRole = "teacher"
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -48,6 +49,7 @@ function Navbar() {
               <li>Home</li>
             </NavLink>
 
+            {userRole === 'student' && 
             <NavLink
               to='/courses'
               className={({ isActive }) =>
@@ -58,7 +60,7 @@ function Navbar() {
               onClick={() => setIsMenuOpen(false)}
             >
               <li>Courses</li>
-            </NavLink>
+            </NavLink>}
 
             <NavLink
               to='/contact'
@@ -93,7 +95,7 @@ function Navbar() {
                   console.log('Explore Courses clicked');
                 }}
               >
-                Explore Courses
+                {userRole === 'teacher' ? 'Sign up for Free' : 'Explore Courses'}
               </button>
             )}
           </ul>
