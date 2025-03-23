@@ -22,7 +22,6 @@ const OTPVerification = ({ onNext, onPrevious }) => {
       document.getElementById(`otp-input-${index + 1}`).focus();
     }
   };
-
   const verifyOTP = async (otpNumber) => {
     setIsLoading(true); // Start loading
     try {
@@ -32,24 +31,29 @@ const OTPVerification = ({ onNext, onPrevious }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          otp: otpNumber, // Pass the OTP
+          verificationToken: otpNumber, // Use verificationToken instead of otp
           email: formData.email, // Pass the email from formData
         }),
       });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        // OTP verification successful
-        setIsModalVisible(true); // Show success modal
-        message.success('OTP verified successfully!');
-      } else {
-        // OTP verification failed
-        message.error(data.message || 'OTP verification failed. Please try again.');
+  
+      // Check if the response is OK (status code 200-299)
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'OTP verification failed. Please try again.');
       }
+  
+      const data = await response.json();
+  
+      // OTP verification successful
+      setIsModalVisible(true); // Show success modal
+      message.success('OTP verified successfully!');
     } catch (error) {
       console.error('Error verifying OTP:', error);
-      message.error('An error occurred. Please try again.');
+      if (error.message === 'Failed to fetch') {
+        message.error('Network error. Please check your internet connection.');
+      } else {
+        message.error(error.message || 'An error occurred. Please try again.');
+      }
     } finally {
       setIsLoading(false); // Stop loading
     }
