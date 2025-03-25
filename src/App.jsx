@@ -24,6 +24,7 @@ import ForgotPassword from "./components/ForgotPassword"
 import CreateNewPassword from "./components/CreateNewPassword"
 import OTPVerification from "./components/OTPVerification"
 import ProtectedRoute from "./components/ProtectedRoute"
+import ForgotPassOtp from "./components/ForgotPassOtp"
 
 // import 'antd/dist/reset.css'; // For Ant Design v5
 
@@ -36,13 +37,14 @@ function App() {
       <Navbar/>
       <div className="min-h-[100vh]">
         <Routes>
-          
+
           <Route path="/" element={<Home/>}/>
           <Route path="/auth" element={<Auth/>}/>
           <Route path="/otp" element={<OTPVerification/>}/>
           <Route path="/login" element={<MainLogin/>}/>
           <Route path="/forgotpassword" element={<ForgotPassword/>}/>
-          <Route path="/createnewpassword" element={<CreateNewPassword/>}/>
+          <Route path="/forgot-password-otp" element={<ForgotPassOtp/>}/>
+          <Route path="/create-new-password" element={<CreateNewPassword/>}/>
           <Route element={<ProtectedRoute/>}>
             <Route path="/courses" element={<Courses/>}/>
             <Route path="/courses/:id" element={<CourseDetails/>}/>
